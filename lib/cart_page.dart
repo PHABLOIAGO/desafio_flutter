@@ -106,6 +106,7 @@ class _CartPageState extends State<CartPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       height: 30,
@@ -125,25 +126,32 @@ class _CartPageState extends State<CartPage> {
                     Row(
                       children: [
                         Container(
-                          width: 110,
+                          constraints: BoxConstraints(minWidth: 70),
                           child: Text(
                             "${revenda.nome}",
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        Text(" - Botijão de 13kg")
+                        Text(
+                          " - Botijão de 13kg",
+                          overflow: TextOverflow.ellipsis,
+                        )
                       ],
                     ),
                   ],
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
                   children: [
-                    Text("R\$", style: TextStyle(fontSize: 10)),
+                    Text(
+                      "R\$",
+                      style: TextStyle(fontSize: 10),
+                    ),
                     Text(
                       "${(quantidade * revenda.preco).toStringAsFixed(2).replaceAll(".", ",")}",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     )
                   ],
                 ),
@@ -176,7 +184,8 @@ class _CartPageState extends State<CartPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(revenda.nota.toStringAsFixed(2)),
                                   Icon(Icons.star, color: Colors.yellow),
@@ -185,7 +194,7 @@ class _CartPageState extends State<CartPage> {
                               Row(
                                 children: [
                                   Text(revenda.tempoMedio),
-                                  Text("min")
+                                  Text("min"),
                                 ],
                               ),
                             ],
@@ -193,8 +202,7 @@ class _CartPageState extends State<CartPage> {
                         ],
                       ),
                       Container(
-                        width: 90,
-                        height: 30,
+                        padding: EdgeInsets.all(10),
                         color: Color(int.parse("0xFF${revenda.cor}")),
                         child: Center(
                             child: Text(
@@ -209,19 +217,25 @@ class _CartPageState extends State<CartPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("Botijão de 13kg"),
-                          Text(revenda.nome),
+                          Text(
+                            revenda.nome,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("R\$", style: TextStyle(fontSize: 10)),
                               Text(
                                 "${revenda.preco.toStringAsFixed(2).replaceAll(".", ",")}",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               )
                             ],
                           )
@@ -231,11 +245,13 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           IconButton(
                             icon: Icon(Icons.remove_circle, size: 30),
-                            onPressed: quantidade > 0 ? () {
-                              setState(() {
-                                quantidade--;
-                              });
-                            } : null,
+                            onPressed: quantidade > 0
+                                ? () {
+                                    setState(() {
+                                      quantidade--;
+                                    });
+                                  }
+                                : null,
                           ),
                           Container(
                             height: 60,
@@ -268,21 +284,27 @@ class _CartPageState extends State<CartPage> {
               ],
             ),
           ),
-          Expanded(child: Container()),
           Container(
             height: 70,
             width: 200,
+            margin: EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                gradient: LinearGradient(
-                    colors: [Colors.blue[200], Colors.blue[700]])),
+              borderRadius: BorderRadius.circular(35),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue[200],
+                  Colors.blue[700],
+                ],
+              ),
+            ),
             child: Center(
-                child: Text(
-              "IR PARA PAGAMENTO",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            )),
-          )
+              child: Text(
+                "IR PARA PAGAMENTO",
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -33,24 +33,22 @@ class _HomePageState extends State<HomePage> {
         actions: [
           PopupMenuButton(
             icon: Icon(Icons.swap_vert),
-            itemBuilder: (_) {
-              return filtros
-                  .map(
-                    (filter) => PopupMenuItem(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(filter),
-                          Checkbox(
-                            value: false,
-                            onChanged: (value) {},
-                          )
-                        ],
-                      ),
+            itemBuilder: (_) => filtros
+                .map(
+                  (filter) => PopupMenuItem(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(filter),
+                        Checkbox(
+                          value: false,
+                          onChanged: (value) {},
+                        )
+                      ],
                     ),
-                  )
-                  .toList();
-            },
+                  ),
+                )
+                .toList(),
           ),
           PopupMenuButton(
             icon: Icon(Icons.help_outline_sharp),
@@ -103,27 +101,25 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: ListView.separated(
-                separatorBuilder: (_, index) => SizedBox(
-                  height: 15,
-                ),
-                itemCount: revendas?.length ?? 0,
-                itemBuilder: (_, index) {
-                  return GestureDetector(
-                    child: CardWidget(revendas[index]),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => CartPage(revendas[index]),
-                        ),
-                      );
-                    },
-                  );
-                },
+            child: ListView.separated(
+              padding: EdgeInsets.only(top:20, left: 10, right:10),
+              separatorBuilder: (_, index) => SizedBox(
+                height: 15,
               ),
+              itemCount: revendas?.length ?? 0,
+              itemBuilder: (_, index) {
+                return GestureDetector(
+                  child: CardWidget(revendas[index]),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => CartPage(revendas[index]),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],
